@@ -64,7 +64,7 @@ cos(pi)     # cosine of pi`}
 [1] 2.302585
 [1] -1`}
           </pre>
-
+          <hr className="my-6 border-gray-300" />
           <h3 className="text-xl font-semibold mb-2 mt-6">3. Assigning Values to Variables</h3>
           <p className="mb-3">
             Sometimes we want to save a calculation so we can use it later. In R, we use <code className="bg-gray-100 px-1 rounded">{'<-'}</code> to assign values to a variable.
@@ -115,7 +115,7 @@ letters`}
 {`[1] 1 2 3
 [1] "a" "b" "c"`}
           </pre>
-
+<hr className="my-6 border-gray-300" />
           <h3 className="text-xl font-semibold mb-2 mt-6">4. Rounding Numbers</h3>
           <p className="mb-3">
             The <code>round()</code> function lets us round numbers. It takes two arguments:
@@ -138,7 +138,7 @@ round(sqrt(x), digits = 4)`}
 [1] 3.1416
 [1] 9.8995`}
           </pre>
-
+<hr className="my-6 border-gray-300" />
           <h3 className="text-xl font-semibold mb-2 mt-6">5. Errors with Undefined Variables</h3>
           <p className="mb-3">
             If you use a variable that hasn’t been defined yet, R will throw an error.
@@ -152,7 +152,7 @@ round(sqrt(x), digits = 4)`}
           <p className="mb-3">
             Since <code>y</code> has not been defined, R will not know what to do.
           </p>
-
+<hr className="my-6 border-gray-300" />
           <h3 className="text-xl font-semibold mb-2 mt-6">Practice</h3>
           <p className="mb-3">
             Do these exercises in RStudio first. Once you have your answers, copy the code into the textbox on this website so the app can check if you are correct.
@@ -186,22 +186,25 @@ round(sqrt(x), digits = 4)`}
             )}
           </div>
 
-          <p className="mt-8 font-semibold text-center">🎉 Congrats on completing 2.1!</p>
+          {result === 'correct' && (
+  <p className="mt-8 font-semibold text-center">🎉 Congrats on completing 2.1!</p>
+)}
         </section>
 
         <hr className="my-8 border-gray-300" />
 
         <div className="mt-12 text-center">
-          <Link href="/course/unit1">
-            <button className="mr-4 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md transition">
-              ← Back to Lesson 1
-            </button>
-          </Link>
           <Link href="/course">
-            <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md transition">
-              Back to Course →
+            <button className="mr-4 bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md transition">
+              ← Back to Course
             </button>
           </Link>
+          <Link href="/course/unit2/lesson2">
+            <button className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold shadow-md transition">
+              Next Lesson →
+            </button>
+          </Link>
+          <div className="h-40"></div>
         </div>
       </div>
     </div>

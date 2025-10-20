@@ -43,22 +43,31 @@ export default function CourseHome() {
       status: "locked",
       lessons: [
         { id: "4.1", name: "Summarizing Data with Grouping" },
-        { id: "4.2", name: "Creating Custom Metrics" },
-        { id: "4.3", name: "Correlations & Trends" },
-        { id: "4.4", name: "Case Study: Player Consistency" },
-        { id: "final", name: "Unit 4 Final Lesson" },
+        { id: "4.2", name: "Scatterplots & Regression Lines" },
+        { id: "4.3", name: "Faceting & Grouped Plots" },
+        { id: "4.4", name: "Aesthetics & Interactive Visuals" },
+        { id: "final", name: "Unit 4 Final Test: Player Consistency Case Study" },
       ],
     },
     {
       id: 5,
-      title: "Exploration & Insights",
+      title: "Final Case Study",
       status: "locked",
       lessons: [
-        { id: "5.1", name: "Scatterplots & Regression Lines" },
-        { id: "5.2", name: "Faceting & Grouped Plots" },
-        { id: "5.3", name: "Interactive Visuals" },
-        { id: "5.4", name: "Building Dashboards" },
-        { id: "final", name: "Unit 5 Final Lesson" },
+        { id: "5.1", name: "Choose Path" },
+        { id: "5.2", name: "Data Cleaning" },
+        { id: "5.3", name: "Graphing" },
+        { id: "5.4", name: "Insights" },
+        { id: "final", name: "Put it All Together" },
+      ],
+    },
+        {
+      id: 6,
+      title: "World of Github",
+      status: "start",
+      lessons: [
+        { id: "6.1", name: "Create an Account" },
+        { id: "6.2", name: "Upload Your Project" }
       ],
     },
   ];
