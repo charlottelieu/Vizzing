@@ -36,57 +36,75 @@ export default function CreatePage() {
       </div>
 
       <div className="border rounded-2xl p-6 max-w-3xl mx-auto mb-10">
-        <h2 className="font-semibold mb-4">Datasets</h2>
+        <h2 className="font-semibold mb-4">Free Datasets</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-            <h3 className="font-semibold">Baseball Statistics</h3>
+            <h3 className="font-semibold">Sports Datasets</h3>
             <p className="text-sm text-gray-600">
-              MLB player data & season stats
+              <a href="https://sports-statistics.com/sports-data/sports-data-sets-for-data-modeling-visualization-predictions-machine-learning/" 
+              className="text-blue-600 underline">Sport-Statistics.com</a>
             </p>
-          </div>
-          <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-            <h3 className="font-semibold">NBA Game Data</h3>
             <p className="text-sm text-gray-600">
-              Basketball game & player stats
+              <a href="https://sportsandsociety.osu.edu/sports-data-sets" 
+              className="text-blue-600 underline">Ohio State University Sports Data Sets</a>
+            </p>
+            <p className="text-sm text-gray-600">
+              <a href="https://www.madronavl.com/launchable/public-data-sources-sports" 
+              className="text-blue-600 underline">Mandrona Venture Labs Public Sports Data</a>
             </p>
           </div>
           <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
             <h3 className="font-semibold">Weather Data</h3>
             <p className="text-sm text-gray-600">
-              Historical weather patterns
+              <a href="https://www.kaggle.com/datasets/zaraavagyan/weathercsv" 
+              className="text-blue-600 underline">Kaggle Weather CSV's</a>
+            </p>
+            <p className="text-sm text-gray-600">
+              <a href="https://www.ncei.noaa.gov/cdo-web/" 
+              className="text-blue-600 underline">NOAA Climate Data Online</a>
             </p>
           </div>
           <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
-            <h3 className="font-semibold">Stock Market</h3>
-            <p className="text-sm text-gray-600">
-              Historical stock prices
+            <h3 className="font-semibold">Stocks Data</h3>
+             <p className="text-sm text-gray-600">
+              <a href="https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset" 
+              className="text-blue-600 underline">Kaggle Stock Market Datasets</a>
             </p>
+             <p className="text-sm text-gray-600">
+              <a href="https://www.datacamp.com/datalab/datasets/dataset-r-stock-exchange" 
+              className="text-blue-600 underline">Stock Exchange Data</a>
+            </p>
+             <p className="text-sm text-gray-600">
+              <a href="https://stooq.com/db/h/" 
+              className="text-blue-600 underline">Free Historical Market Data</a>
+            </p>    
+          </div>
+          <div className="border rounded-lg p-4 hover:bg-gray-50 cursor-pointer">
+            <h3 className="font-semibold">Music & Entertainment</h3>
+           <p className="text-sm text-gray-600">
+              <a href="https://www.kaggle.com/datasets/zaheenhamidani/ultimate-spotify-tracks-db" 
+              className="text-blue-600 underline">Kaggle Spotify Tracks Dataset 1921-2023</a>
+            </p> 
+            <p className="text-sm text-gray-600">
+              <a href="https://www.kaggle.com/datasets/akshaypawar7/imdb-top-1000-movies-dataset" 
+              className="text-blue-600 underline">Kaggle IMDb Top 1000 Movies</a>
+            </p> 
+            <p className="text-sm text-gray-600">
+              <a href="https://www.kaggle.com/datasets/dhruvildave/billboard-the-hot-100-songs" 
+              className="text-blue-600 underline">Billboard Hot 100 1958-2021</a>
+            </p> 
           </div>
         </div>
       </div>
 
       <div className="border rounded-2xl p-6 max-w-3xl mx-auto">
-        <h2 className="font-semibold mb-4">Trending Ideas</h2>
+        <h2 className="font-semibold mb-4">Trending Datasets (Updated)</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           <div>
             <h3 className="text-purple-500 font-semibold mb-1">
-              Baseball 📊
+               <a href="https://www.kaggle.com/discussions/general/274167" 
+              className="text-blue-600 underline">Kaggle's Hot Trending Sets</a>
             </h3>
-            <ul className="text-sm list-disc list-inside text-gray-700 space-y-1">
-              <li>Home run trends by season</li>
-              <li>Batting average correlations</li>
-              <li>Team performance analysis</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-purple-500 font-semibold mb-1">
-              Basketball 🏀
-            </h3>
-            <ul className="text-sm list-disc list-inside text-gray-700 space-y-1">
-              <li>Shot efficiency heatmaps</li>
-              <li>Player performance radar</li>
-              <li>Team comparison charts</li>
-            </ul>
           </div>
         </div>
       </div>

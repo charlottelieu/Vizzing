@@ -10,7 +10,7 @@ export default function RootLayout({ children }) {
   const navItems = [
     { href: '/course', icon: 'mingcute:book-6-line', label: 'Course' },
     { href: '/create', icon: 'mingcute:add-fill', label: 'Create' },
-    { href: '/feed', icon: 'mingcute:user-1-line', label: 'Feed' },
+    { href: '/feed', icon: 'mingcute:home-6-line', label: 'Feed' },
     { href: '/profile', icon: 'mingcute:user-1-line', label: 'Profile' },
   ];
 

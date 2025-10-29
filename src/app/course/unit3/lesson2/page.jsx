@@ -8,12 +8,22 @@ export default function Lesson32() {
   const [result, setResult] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const scatter1 = code.includes('ggplot') && code.includes('pts') && code.includes('ast') && code.includes('alpha=0.2');
+
+  const heatmap = code.includes('geom_bin2d') && code.includes('pts') && code.includes('mp') && code.includes('bins=50');
+
+  const scatter2 = code.includes('ggplot') && code.includes('pts') && code.includes('ast') &&
+                   code.includes('alpha=0.3') && (code.includes('pts<=40') || code.includes('pts<=40')) &&
+                   (code.includes('ast<=12') || code.includes('ast<=12'));
+
+  if (scatter1 && heatmap && scatter2) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-black leading-relaxed">

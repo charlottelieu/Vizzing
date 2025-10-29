@@ -8,12 +8,19 @@ export default function Unit2() {
   const [result, setResult] = useState(null);
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase();
+  const hasY = code.includes('y <-');
+  const hasZ = code.includes('z <-');
+  const hasSqrt = code.includes('sqrt(y)') && code.includes('sqrt(z)');
+  const hasRound = code.includes('round') && code.includes('digits=3');
+
+  if (hasY && hasZ && hasSqrt && hasRound) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-gray-900 leading-relaxed">
@@ -160,8 +167,8 @@ round(sqrt(x), digits = 4)`}
 
           <ul className="list-disc list-inside mb-3">
             <li>Save the value of 8/5 + 3^3 as a new variable called y.</li>
-            <li>Save the value of y/x as a new variable called z.</li>
-            <li>Compute the square root of x, y, and z.</li>
+            <li>Save the value of y/2 as a new variable called z.</li>
+            <li>Compute the square root of y and z.</li>
             <li>Round these values to 3 decimal places.</li>
           </ul>
 

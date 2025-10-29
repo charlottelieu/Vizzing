@@ -7,12 +7,41 @@ export default function Unit2Final() {
   const [result, setResult] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const hasPackage = code.includes('library(palmerpenguins)') || code.includes('install.packages("palmerpenguins")');
+  const hasDataset = code.includes('penguins') && code.includes('<-') || code.includes('data(penguins)');
+  const hasHead = code.includes('head(');
+  const hasStr = code.includes('str(');
+  const hasSummary = code.includes('summary(');
+  
+  const hasMean = code.includes('bill_length_mm') && code.includes('mean(');
+  const hasMax = code.includes('flipper_length_mm') && code.includes('max(');
+  const hasMin = code.includes('body_mass_g') && code.includes('min(');
+  
+  const hasArrangeMass = code.includes('arrange(') && code.includes('body_mass_g');
+  const hasRatio = code.includes('bill_flipper_ratio') && code.includes('/') ;
+  const hasArrangeRatio = code.includes('arrange(') && code.includes('bill_flipper_ratio');
+
+  if (
+    hasPackage &&
+    hasDataset &&
+    hasHead &&
+    hasStr &&
+    hasSummary &&
+    hasMean &&
+    hasMax &&
+    hasMin &&
+    hasArrangeMass &&
+    hasRatio &&
+    hasArrangeRatio
+  ) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-gray-900 leading-relaxed">

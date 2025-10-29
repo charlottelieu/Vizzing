@@ -2,18 +2,28 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import Image from "next/image";
 
 export default function Unit2_2() {
   const [userCode, setUserCode] = useState('');
   const [result, setResult] = useState(null);
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const hasRead = code.includes('my_data<-read.csv');
+  const hasHead = code.includes('head(my_data,8)') || code.includes('head(my_data)');
+  const hasStr = code.includes('str(my_data)');
+  const hasSummary = code.includes('summary(my_data)');
+  const hasMean = code.includes('mean(my_data$') || code.includes('mean(my_data[[');
+
+  if (hasRead && hasHead && hasStr && hasSummary && hasMean) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-gray-900 leading-relaxed">
@@ -60,18 +70,23 @@ export default function Unit2_2() {
           <pre className="bg-gray-100 p-3 rounded mb-3 font-mono text-sm">data()</pre>
 
           <p className="mb-3">Look at how many!</p>
+          <Image src={"/images/2.2.png"} alt="2.2" width={400} height={300} />
+                      <div className="h-10"></div>
 
           <p className="mb-3">Let’s load our first dataset! Type:</p>
 
           <pre className="bg-gray-100 p-3 rounded mb-3 font-mono text-sm">
-{`library(datasets)
-my_data <- data("ToothGrowth")
-View(my_data)`}
+              {`library(datasets)
+               my_data <- data("ToothGrowth")
+               View(my_data)`}
           </pre>
 
           <p className="mb-3">
             A new tab should appear, and you should see something like this:
           </p>
+          <Image src={"/images/2.22.png"} alt="2.22" width={200} height={150} />
+                      <div className="h-10"></div>
+
 
           <p className="mb-3">
             To access it, we first used the <code>library()</code> function to load the <code>datasets</code> package,
@@ -92,9 +107,11 @@ View(my_data)`}
           </p>
 
           <pre className="bg-gray-100 p-3 rounded mb-3 font-mono text-sm">
-{`head(data)   # first 6 rows
-head(data, 10)   # first 10 rows`}
+              {`head(data)   # first 6 rows
+                head(data, 10)   # first 10 rows`}
           </pre>
+          <Image src={"/images/2.23.png"} alt="2.23" width={200} height={150} />
+                      <div className="h-10"></div>
 
           <p className="mb-2 font-semibold">Str()</p>
           <p className="mb-3">
@@ -102,6 +119,8 @@ head(data, 10)   # first 10 rows`}
           </p>
 
           <pre className="bg-gray-100 p-3 rounded mb-3 font-mono text-sm">str(data)</pre>
+          <Image src={"/images/2.24.png"} alt="2.24" width={700} height={300} />
+                      <div className="h-10"></div>
 
           <p className="mb-2 font-semibold">Summary()</p>
           <p className="mb-3">
@@ -109,7 +128,8 @@ head(data, 10)   # first 10 rows`}
           </p>
 
           <pre className="bg-gray-100 p-3 rounded mb-3 font-mono text-sm">summary(data)</pre>
-
+              <Image src={"/images/2.25.png"} alt="1.1" width={500} height={300} />
+                      <div className="h-10"></div>
           <hr className="my-6 border-gray-300" />
 
           <h3 className="text-xl font-semibold mb-2">5. Accessing Columns</h3>

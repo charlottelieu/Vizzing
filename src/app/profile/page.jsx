@@ -64,15 +64,15 @@ export default function ProfilePage() {
                 </svg>
               </div>
               <div>
-                <div className="text-lg font-medium tracking-tight">@username</div>
+                <div className="text-lg font-medium tracking-tight">@charlottelieu</div>
               </div>
             </div>
 
             {/* Stats */}
             <div className="md:col-span-6 flex items-center justify-around">
               <div className="text-center"><div className="text-2xl font-semibold">3/7</div><div className="text-sm text-slate-700 mt-1">unit progress</div></div>
-              <div className="text-center"><div className="text-2xl font-semibold">30</div><div className="text-sm text-slate-700 mt-1">followers</div></div>
-              <div className="text-center"><div className="text-2xl font-semibold">30</div><div className="text-sm text-slate-700 mt-1">following</div></div>
+              <div className="text-center"><div className="text-2xl font-semibold">0</div><div className="text-sm text-slate-700 mt-1">followers</div></div>
+              <div className="text-center"><div className="text-2xl font-semibold">1</div><div className="text-sm text-slate-700 mt-1">following</div></div>
             </div>
 
             {/* Viz box */}

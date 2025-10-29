@@ -8,12 +8,18 @@ export default function Lesson31() {
   const [userResponse, setUserResponse] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const hasASTHist = code.includes('hist(') && code.includes('ast') && code.includes('breaks=10');
+  const hasMPHist = code.includes('hist(') && code.includes('mp') && code.includes('binwidth=5');
+  const hasSTLHist = code.includes('hist(') && code.includes('stl') && code.includes('breaks=20');
+
+  if (hasASTHist && hasMPHist && hasSTLHist) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-black leading-relaxed">

@@ -8,12 +8,19 @@ export default function Lesson34() {
   const [result, setResult] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const assistLevelCreated = code.includes('assistlevel') && code.includes('case_when');
+  const columnsViewed = code.includes('date') && code.includes('opponent') &&
+                        code.includes('pts') && code.includes('ast');
+  const summaryDone = code.includes('group_by') && code.includes('reframe');
+
+  if (assistLevelCreated && columnsViewed && summaryDone) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-black leading-relaxed">

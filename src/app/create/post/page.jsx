@@ -18,12 +18,9 @@ export default function PostPage() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-
   const auth = getAuth(app);
   const db = getFirestore(app);
-  
 
-  // Read query params once
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -64,10 +61,8 @@ export default function PostPage() {
         repoLink,
         createdAt: serverTimestamp(),
       });
-      setError("");
-      setLoading(false);
-      setSucess(true);
-      setTimeout(() => router.push("/profile"), 2000); 
+      setSuccess(true);
+      setTimeout(() => router.push("/profile"), 1000);
     } catch (err) {
       console.error(err);
       setError("Failed to post. Try again.");
@@ -105,15 +100,15 @@ export default function PostPage() {
         className="w-full max-w-3xl border rounded-lg p-4 mb-4 focus:outline-none focus:ring-2 focus:ring-purple-400"
       />
 
-      <button
-        onClick={handlePost}
-        disabled={loading}
-        className="w-full max-w-3xl bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium"
-      >
-        {loading ? "Posting..." : "Post"}
-      </button>
-      {success && <p className="text-green-500 mt-4">Posted!</p>}
-
+      {!success && (
+        <button
+          onClick={handlePost}
+          disabled={loading}
+          className="w-full max-w-3xl bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-medium"
+        >
+          {loading ? "Posted!" : "Post"}
+        </button>
+      )}
     </div>
   );
 }

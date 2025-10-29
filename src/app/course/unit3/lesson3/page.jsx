@@ -8,12 +8,19 @@ export default function Lesson33() {
   const [result, setResult] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const filter1 = code.includes('pts>35') || code.includes('pts>=36');
+  const filter2 = code.includes('pts>25') && code.includes('ast>=8');
+  const filter3 = code.includes('pts>=10') && code.includes('reb>=10') && code.includes('ast>=10');
+  const filter4 = code.includes('opponent!="det"') || code.includes('opponent!="detroit"');
+
+  if (filter1 && filter2 && filter3 && filter4) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-black leading-relaxed">

@@ -2,17 +2,31 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+
 export default function Lesson23() {
   const [userCode, setUserCode] = useState('');
   const [result, setResult] = useState('');
 
-  const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+ const checkAnswer = () => {
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+  const hasInstall = 
+    code.includes('install.packages("ggplot2")') &&
+    code.includes('install.packages("dplyr")') &&
+    code.includes('install.packages("tidyr")') &&
+    code.includes('install.packages("readr")');
+
+  const hasLibrary =
+    code.includes('library(ggplot2)') &&
+    code.includes('library(dplyr)') &&
+    code.includes('library(tidyr)') &&
+    code.includes('library(readr)');
+
+  if (hasInstall && hasLibrary) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-gray-900 leading-relaxed">

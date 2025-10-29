@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function Unit1() {
   return (
@@ -15,6 +16,8 @@ export default function Unit1() {
           <p className="mb-3">
             When you open RStudio for the first time, it should open up a new window that looks something like this:
           </p>
+          <Image src={"/images/1.2.png"} alt="1.1" width={800} height={600} />
+                      <div className="h-10"></div>
           <p className="mb-3">
             The RStudio window is divided into three panes. For now, we will focus only on the big pane on the left, the Console pane.
             At the top of the Console pane, there is a bit of introductory text that shows the version of R that we are using and the license.
@@ -54,7 +57,7 @@ export default function Unit1() {
               Back to Course →
             </button>
           </Link>
-          
+          <div className="h-40"></div>
         </div>
       </div>
     </div>

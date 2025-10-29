@@ -1,18 +1,27 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function Lesson24() {
   const [userCode, setUserCode] = useState('');
   const [result, setResult] = useState('');
 
   const checkAnswer = () => {
-    if (userCode.trim().toLowerCase() === 'answer key') {
-      setResult('correct');
-    } else {
-      setResult('incorrect');
-    }
-  };
+  const code = userCode.toLowerCase().replace(/\s/g, '');
+
+  const hasArrangeAway = code.includes('arrange(') && code.includes('away_score') ;
+  const hasDifference = code.includes('difference <- abs(') || code.includes('difference = abs(');
+  const hasArrangeDiff = code.includes('arrange(') && code.includes('difference');
+  const hasGameId = code.includes('game_id');
+
+  if (hasArrangeAway && hasDifference && hasArrangeDiff && hasGameId) {
+    setResult('correct');
+  } else {
+    setResult('incorrect');
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-white px-8 py-10 text-[13pt] font-[Times_New_Roman] text-gray-900 leading-relaxed">
@@ -54,6 +63,8 @@ export default function Lesson24() {
             <code>nfl_games &lt;- read_csv("post_games_2009.csv")</code>
           </pre>
           <p className="mb-3">The data should look like this:</p>
+          <Image src={"/images/2.4.png"} alt="2.4" width={900} height={600} />
+                      <div className="h-10"></div>
         </section>
 
         <hr className="my-6 border-gray-300" />
@@ -70,6 +81,8 @@ export default function Lesson24() {
           <p className="mb-3">
             If we do this, we should see the games ordered by the fewest home points to the most in our console.
           </p>
+            <Image src={"/images/2.42.png"} alt="2.42" width={900} height={600} />
+                      <div className="h-10"></div>
           <p className="mb-3">
             To reverse it (highest score first), we use <code>desc()</code>:
           </p>
@@ -90,6 +103,8 @@ export default function Lesson24() {
           <pre className="bg-gray-100 p-3 rounded-md mb-3">
             <code>mutate(nfl_games, margin = home_score - away_score)</code>
           </pre>
+          <Image src={"/images/2.43.png"} alt="2.43" width={900} height={600} />
+                      <div className="h-10"></div>
           <p className="mb-3">
             This adds a new column called <code>margin</code> showing how many points the home team won or lost by.
           </p>
@@ -118,6 +133,8 @@ export default function Lesson24() {
 nfl_games`}
             </code>
           </pre>
+           <Image src={"/images/2.44.png"} alt="2.44" width={900} height={600} />
+                      <div className="h-10"></div>
           <p className="mb-3">
             Now <code>nfl_games</code> includes both the <code>margin</code> and <code>total_points</code> columns.
           </p>

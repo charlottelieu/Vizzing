@@ -87,7 +87,7 @@ export default function CourseHome() {
             key={unit.id}
             className="bg-white rounded-2xl p-6 shadow-md border border-gray-200"
           >
-            {/* Header */}
+
                <div className="flex justify-between items-center mb-4">
   <h2 className="text-2xl font-bold text-black">
     Unit {unit.id}: {unit.title}
