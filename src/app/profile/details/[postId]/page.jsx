@@ -8,6 +8,7 @@ import {
   doc,
   getDoc,
   deleteDoc,
+  updateDoc,
   collection,
   addDoc,
   query,
@@ -69,12 +70,27 @@ export default function PostDetails() {
     return () => unsubscribe();
   }, [postId, auth.currentUser]);
 
-  const handleLike = () => {
-    if (!liked) {
-      setLiked(true);
-      setPost((prev) => ({ ...prev, likes: 1 }));
-    }
-  };
+ const handleLike = async () => {
+  if (!post) return;
+  const user = auth.currentUser;
+  if (!user) return;
+
+  const postRef = doc(db, "users", user.uid, "posts", postId);
+
+  try {
+    await updateDoc(postRef, {
+      likes: (post.likes || 0) + (liked ? -1 : 1),
+    });
+
+    setPost((prev) => ({
+      ...prev,
+      likes: (prev.likes || 0) + (liked ? -1 : 1),
+    }));
+    setLiked(!liked);
+  } catch (error) {
+    console.error("Error updating likes:", error);
+  }
+};
 
   const handleDelete = async () => {
     if (!confirm("Delete this post?")) return;

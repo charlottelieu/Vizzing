@@ -15,7 +15,7 @@ export default function Unit5Final() {
     Papa.parse(file, {
       header: true,
       dynamicTyping: true,
-      preview: 5, // show first 5 rows only
+      preview: 5, 
       complete: (results) => {
         setDataPreview(results.data);
       },
