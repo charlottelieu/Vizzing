@@ -22,7 +22,7 @@ export default function CourseHome() {
         { id: "2.2", name: "Upload Data Sets & View Them" },
         { id: "2.3", name: "Packages & The Tidyverse" },
         { id: "2.4", name: "Arrange & Mutate Data" },
-        { id: "final", name: "🐧 Unit 2 Final Test: Penguins Case Study" },
+        { id: "final", name: "Unit 2 Final Test: Penguins Case Study" },
       ],
     },
     {
@@ -34,7 +34,7 @@ export default function CourseHome() {
         { id: "3.2", name: "More Plotting!" },
         { id: "3.3", name: "Filtering" },
         { id: "3.4", name: "Categorical Variables and Summary" },
-        { id: "final", name: "Unit 3 Final Test" },
+        { id: "final", name: "Unit 3 Final Test: Cars Case Study" },
       ],
     },
     {
@@ -44,8 +44,8 @@ export default function CourseHome() {
       lessons: [
         { id: "4.1", name: "Summarizing Data with Grouping" },
         { id: "4.2", name: "Scatterplots & Regression Lines" },
-        { id: "4.3", name: "Faceting & Grouped Plots" },
-        { id: "4.4", name: "Aesthetics & Interactive Visuals" },
+        { id: "4.3", name: "Faceting" },
+        { id: "4.4", name: "Aesthetics" },
         { id: "final", name: "Unit 4 Final Test: Player Consistency Case Study" },
       ],
     },
@@ -115,11 +115,8 @@ export default function CourseHome() {
   )}
 </div>
 
-
-            {/* What You'll Learn */}
             <p className="font-bold text-black mb-2">What You'll Learn:</p>
-
-            {/* Lessons */}
+            
             <ul className="list-disc list-inside space-y-1">
               {unit.lessons.map((lesson) => (
                 <li key={lesson.id}>

@@ -28,7 +28,7 @@ export default function Feed() {
     {
       id: "1",
       user: "user_123",
-      caption: "First Post",
+      caption: "Shows the amount of turnovers and takeaways per NFL team in 2021. Most notably Green Bay, Vikings, and Cardnials at the top with the Jaguars and Panthers at the PanelBottom.",
       imageUrl: "/images/image1.png",
       likes: 0,
       comments: 0,
@@ -36,7 +36,7 @@ export default function Feed() {
     {
       id: "2",
       user: "user_567",
-      caption: "amazing caption",
+      caption: "Who would've exptected Sheffiled Weds at the top?",
       imageUrl: "/images/image2.png",
       likes: 0,
       comments: 0,
@@ -64,7 +64,6 @@ export default function Feed() {
           );
         }
 
-        // Sort newest first
         allPosts.sort(
           (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)
         );
@@ -84,7 +83,6 @@ export default function Feed() {
     <div className="min-h-screen bg-white text-gray-900 flex flex-col items-center py-10 px-6">
       <h1 className="text-4xl font-bold text-purple-700 mb-6">Feed</h1>
 
-      {/* Tabs */}
       <div className="flex space-x-6 mb-8">
         <button
           onClick={() => setTab("foryou")}

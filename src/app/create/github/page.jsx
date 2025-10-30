@@ -16,9 +16,8 @@ export default function UploadFromGitHub() {
     setError("");
 
     try {
-      // Set up GitHub provider with correct scope
       const provider = new GithubAuthProvider();
-      provider.addScope("repo"); // full access to public + private repos
+      provider.addScope("repo"); 
       provider.setCustomParameters({ allow_signup: "true" });
 
       const result = await signInWithPopup(auth, provider);
@@ -36,12 +35,10 @@ export default function UploadFromGitHub() {
         return;
       }
 
-      // Redirect to choose-folder page with token in URL
       router.push(`/create/connect?token=${token}`);
 
     } catch (err) {
       if (err.code === "auth/cancelled-popup-request") {
-        // ignore multiple popups
       } else if (err.code === "auth/account-exists-with-different-credential") {
         const pendingCred = GithubAuthProvider.credentialFromError(err);
         const email = err.customData.email;

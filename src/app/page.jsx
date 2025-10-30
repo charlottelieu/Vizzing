@@ -13,13 +13,11 @@ export default function Home() {
   const [userSession, setUserSession] = useState(null);
 
   useEffect(() => {
-    // ✅ Safe to access sessionStorage here
+  
     const storedUser = sessionStorage.getItem('user');
     setUserSession(storedUser);
 
-    if (!user && !storedUser) {
-      router.push('/signup');
-    }
+    
   }, [user, router]);
 
   return (

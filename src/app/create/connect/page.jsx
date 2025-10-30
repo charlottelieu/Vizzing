@@ -22,7 +22,6 @@ export default function ChooseFolderPage() {
     }
   }, []);
 
-  // Fetch GitHub repos once token is available
   useEffect(() => {
     if (!token) return;
 

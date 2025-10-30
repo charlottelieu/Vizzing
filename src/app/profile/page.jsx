@@ -27,10 +27,10 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 export default function ProfilePage() {
-  const [activeTab, setActiveTab] = useState('courses'); // 'courses' | 'inbox' | 'posts'
+  const [activeTab, setActiveTab] = useState('courses');
   const [posts, setPosts] = useState([]);
   const router = useRouter();  
-  // Listen to Firestore posts for the current user
+
   useEffect(() => {
     const user = auth.currentUser;
     if (!user) return;
@@ -48,13 +48,13 @@ export default function ProfilePage() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900" style={{ fontFamily: "'Segoe UI', sans-serif" }}>
-      {/* Header */}
+
       <div className="w-full" style={{ backgroundColor: HEADER_BG }}>
         <div className={`mx-auto ${CONTAINER_W} px-8 py-8 md:py-10`}>
           <div className="flex justify-end text-sm text-slate-900">Day Streak: <span className="font-semibold">7</span></div>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-12 items-center gap-6">
-            {/* Avatar + username */}
+    
             <div className="md:col-span-3 flex items-start gap-4">
               <div className="flex items-center justify-center" style={{ minWidth: 128, minHeight: 128 }}>
                 <svg width="128" height="128" viewBox="0 0 128 128" fill="none">
@@ -68,24 +68,15 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="md:col-span-6 flex items-center justify-around">
               <div className="text-center"><div className="text-2xl font-semibold">3/7</div><div className="text-sm text-slate-700 mt-1">unit progress</div></div>
               <div className="text-center"><div className="text-2xl font-semibold">0</div><div className="text-sm text-slate-700 mt-1">followers</div></div>
               <div className="text-center"><div className="text-2xl font-semibold">1</div><div className="text-sm text-slate-700 mt-1">following</div></div>
             </div>
-
-            {/* Viz box */}
-            <div className="md:col-span-3 flex justify-end">
-              <div className="w-56 h-28 rounded-sm p-4 shadow-md flex flex-col justify-center" style={{ backgroundColor: VIZ_BG }}>
-                <div className="text-sm font-medium text-slate-100">Viz of the Week:</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      {/* Tabs */}
       <section className="mx-auto max-w-6xl px-8 py-10">
         <div className="flex items-center gap-6 mb-6 border-b border-gray-200 pb-3">
           {[
@@ -107,14 +98,14 @@ export default function ProfilePage() {
           ))}
         </div>
 
-        {/* Tabs content */}
+
         {activeTab === 'courses' && (
           <div className="space-y-4">
             {courses.map((c) => (
               <div key={c.id} className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-md flex items-center justify-center bg-white">
-                    {/* icon rendering skipped for brevity */}
+               
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M4 20h20" stroke="#94a3b8" strokeWidth="1.8" strokeLinecap="round"/><path d="M6 14l4-6 6 8 4-3" stroke="#6b7280" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                   </div>
                   <div className="flex-1">

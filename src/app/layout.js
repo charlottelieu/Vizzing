@@ -23,8 +23,6 @@ export default function RootLayout({ children }) {
         <main className = "min-h-screen">
           {children}
           </main>
-
-        {/* Bottom Navbar */}
         {showNavbar && (
           <nav className="fixed bottom-0 left-0 right-0 h-16 bg-[#F5F1E9] border-t border-gray-300 flex justify-around items-center z-50">
             {navItems.map((item) => {

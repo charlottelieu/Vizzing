@@ -95,7 +95,7 @@ export default function PostDetails() {
     await addDoc(commentsRef, {
       text: commentInput.trim(),
       createdAt: new Date(),
-      user: "charlottelieu", // ✅ FORCE USERNAME
+      user: "charlottelieu",
     });
     setCommentInput("");
   };
@@ -157,7 +157,6 @@ export default function PostDetails() {
             </div>
           </div>
 
-          {/* Add a comment */}
           <div className="flex gap-2 mt-auto">
             <input
               type="text"
@@ -176,7 +175,6 @@ export default function PostDetails() {
             </button>
           </div>
 
-          {/* Delete */}
           <button
             onClick={handleDelete}
             className="text-red-500 hover:text-red-600 font-medium mt-4"
