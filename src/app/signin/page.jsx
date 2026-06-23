@@ -1,25 +1,32 @@
 'use client';
 import { useState } from 'react';
-import {useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth'
-import { auth } from '../firebase/config'
-import { useRouter} from 'next/navigation';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/config';
+import { useRouter } from 'next/navigation';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
-  const router = useRouter()
+  const [error, setError] = useState('');
+  const [signInWithEmailAndPassword, , loading] = useSignInWithEmailAndPassword(auth);
+  const router = useRouter();
 
   const handleSignIn = async () => {
-    try{
-        const res= await signInWithEmailAndPassword(email, password);
-        console.log({res});
-        sessionStorage.setItem('user', true)
-        setEmail('');
-        setPassword('');  
-        router.push('/profile')  
-    }catch(e){
-        console.error(e)
+    setError('');
+    try {
+      const res = await signInWithEmailAndPassword(email, password);
+      // res is undefined when credentials are wrong — firebase-hooks doesn't throw
+      if (!res) {
+        setError('Invalid email or password. Please try again.');
+        return;
+      }
+      sessionStorage.setItem('user', true);
+      setEmail('');
+      setPassword('');
+      router.push('/profile');
+    } catch (e) {
+      console.error(e);
+      setError('Something went wrong. Please try again.');
     }
   };
 
@@ -45,11 +52,16 @@ const SignIn = () => {
             className="w-full px-4 py-3 bg-gray-700 text-white placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
 
+          {error && (
+            <p className="text-red-400 text-sm text-center">{error}</p>
+          )}
+
           <button
             onClick={handleSignIn}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-md transition duration-200"
+            disabled={loading}
+            className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-md transition duration-200"
           >
-            Sign In
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function CourseHome() {
     {
       id: 1,
       title: "Installing R",
-      status: "complete",
+      status: "start",
       lessons: [
         { id: "1.1", name: "Install R" },
         { id: "1.2", name: "Learn the Set Up of R" },
@@ -16,7 +16,7 @@ export default function CourseHome() {
     {
       id: 2,
       title: "Introduction to R",
-      status: "complete",
+      status: "start",
       lessons: [
         { id: "2.1", name: "Data Handling Basics" },
         { id: "2.2", name: "Upload Data Sets & View Them" },
@@ -40,7 +40,7 @@ export default function CourseHome() {
     {
       id: 4,
       title: "Advanced Visualizations",
-      status: "locked",
+      status: "start",
       lessons: [
         { id: "4.1", name: "Summarizing Data with Grouping" },
         { id: "4.2", name: "Scatterplots & Regression Lines" },
@@ -52,7 +52,7 @@ export default function CourseHome() {
     {
       id: 5,
       title: "Final Case Study",
-      status: "locked",
+      status: "start",
       lessons: [
         { id: "5.1", name: "Choose Path" },
         { id: "5.2", name: "Data Cleaning" },

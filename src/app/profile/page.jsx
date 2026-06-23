@@ -1,9 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
-import { getFirestore, collection, query, orderBy, onSnapshot } from 'firebase/firestore';
+import { getFirestore, collection, query, orderBy, onSnapshot, doc, getDoc } from 'firebase/firestore';
 import { app } from 'src/app/firebase/config';
 import { useRouter } from 'next/navigation';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
 
 const HEADER_BG = '#efeafd';
 const TRACK_BG = '#eef3f7';
@@ -27,14 +28,35 @@ export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('courses');
   const [courses, setCourses] = useState(defaultCourses);
   const [posts, setPosts] = useState([]);
+  const [username, setUsername] = useState('');  // ← moved inside component
   const router = useRouter();
 
+  // Fetch username from Firestore
   useEffect(() => {
-    const user = auth.currentUser;
-    if (!user) return;
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (!user){
+      console.log('no user');
+      return;
+    }
+    console.log('User UID:', user.uid);
+    const userRef = doc(db, 'users', user.uid);
+    const userSnap = await getDoc(userRef);
+    console.log('Doc exists:', userSnap.exists());        
+    console.log('Doc data:', userSnap.data());
+    if (userSnap.exists()) {
+      setUsername(userSnap.data().username || '');
+    }
+  });
 
+  return () => unsubscribe();
+}, []);
+
+  // Course progress
+useEffect(() => {
+  const unsubscribe_auth = onAuthStateChanged(auth, (user) => {
+    if (!user) return;
     const progressRef = collection(db, 'users', user.uid, 'progress');
-    const unsubscribe = onSnapshot(progressRef, (snapshot) => {
+    onSnapshot(progressRef, (snapshot) => {
       const progressData = {};
       snapshot.docs.forEach((doc) => (progressData[doc.id] = doc.data()));
 
@@ -45,38 +67,35 @@ export default function ProfilePage() {
           : prog.progress > 0
           ? 'In Progress'
           : 'Locked';
-
         return { ...c, progress: prog.progress, completed: prog.completed, subtitle };
       });
 
       setCourses(updated);
     });
+  });
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe_auth();
+}, []);
 
-  useEffect(() => {
-    const user = auth.currentUser;
+// Fetch posts
+useEffect(() => {
+  const unsubscribe_auth = onAuthStateChanged(auth, (user) => {
     if (!user) return;
-
     const postsRef = collection(db, 'users', user.uid, 'posts');
     const q = query(postsRef, orderBy('createdAt', 'desc'));
-    const unsubscribe = onSnapshot(q, (snapshot) => {
+    onSnapshot(q, (snapshot) => {
       const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setPosts(data);
     });
+  });
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe_auth();
+}, []);
 
   return (
     <main className="min-h-screen bg-white text-slate-900" style={{ fontFamily: "'Segoe UI', sans-serif" }}>
       <div className="w-full" style={{ backgroundColor: HEADER_BG }}>
         <div className={`${CONTAINER_W} mx-auto px-8 py-8 md:py-10`}>
-          <div className="flex justify-end text-sm text-slate-900">
-            Day Streak: <span className="font-semibold ml-1">7</span>
-          </div>
-
           <div className="mt-6 grid grid-cols-1 md:grid-cols-12 items-center gap-6">
             <div className="md:col-span-3 flex items-start gap-4">
               <div className="flex items-center justify-center" style={{ minWidth: 128, minHeight: 128 }}>
@@ -87,24 +106,16 @@ export default function ProfilePage() {
                 </svg>
               </div>
               <div>
-                <div className="text-lg font-medium tracking-tight">@charlottelieu</div>
+                <p className="font-semibold text-gray-800">@{username}</p>  {/* ← clean, no stray code */}
               </div>
             </div>
 
-          <div className="md:col-span-6 flex items-center justify-around">
+            <div className="md:col-span-6 flex items-center justify-around">
               <div className="text-center">
                 <div className="text-2xl font-semibold">
                   {courses.filter((c) => c.completed).length}/{courses.length}
                 </div>
                 <div className="text-sm text-slate-700 mt-1">unit progress</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-semibold">0</div>
-                <div className="text-sm text-slate-700 mt-1">followers</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-semibold">1</div>
-                <div className="text-sm text-slate-700 mt-1">following</div>
               </div>
             </div>
           </div>
@@ -112,7 +123,7 @@ export default function ProfilePage() {
       </div>
 
       <section className="mx-auto max-w-6xl px-8 py-10">
-          <div className="flex items-center gap-6 mb-6 border-b border-gray-200 pb-3">
+        <div className="flex items-center gap-6 mb-6 border-b border-gray-200 pb-3">
           {[
             { key: 'courses', label: 'Course Units' },
             { key: 'inbox', label: 'Inbox' },
@@ -184,10 +195,10 @@ export default function ProfilePage() {
             ))}
           </div>
         )}
+
         {activeTab === 'inbox' && (
           <div className="flex justify-center items-center h-48 text-slate-500 italic">No notifications</div>
         )}
-
 
         {activeTab === 'posts' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
